@@ -23,6 +23,7 @@ typedef struct BUFFER_ARRAY {
 } buffer_ptr_array;
 
 buffer_setup* setup_buffer_block();
+buffer_ptr_array* setup_strict_allocations(buffer_ptr_array* buffer_array);
 buffer_ptr_array* setup_buffer_ptr_array(buffer_setup* buffer_block);
 
 #endif
