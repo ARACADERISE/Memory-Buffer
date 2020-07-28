@@ -22,10 +22,11 @@ typedef struct BUFFER_ARRAY {
     size_t BUFFER_ARRAY_SIZE; // keeping all sizes..including the recent struct in use
 } buffer_ptr_array;
 
+void* free_buffer_block(void* ptr);
 buffer_setup* setup_buffer_block();
 buffer_ptr_array* setup_strict_allocations(buffer_ptr_array* buffer_array);
 buffer_ptr_array* setup_buffer_ptr_array(buffer_setup* buffer_block);
-buffer_ptr_array* CALLOC_buffer_new_block(void* ptr, buffer_ptr_array* buffer_array, int ammount_of_elements,size_t allocation_size);
-buffer_ptr_array* add_buffer_block(buffer_setup* buffer_block, buffer_ptr_array* buffer_array);
+//buffer_ptr_array* CALLOC_buffer_new_block(void* ptr, buffer_ptr_array* buffer_array, int ammount_of_elements,size_t allocation_size);
+//buffer_ptr_array* add_buffer_block(buffer_setup* buffer_block, buffer_ptr_array* buffer_array);
 
 #endif

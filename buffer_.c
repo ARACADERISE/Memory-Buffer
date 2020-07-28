@@ -44,9 +44,6 @@ buffer_ptr_array* setup_buffer_ptr_array(buffer_setup* buffer_block) {
     buffer_array->ptrs[buffer_array->index] = ((buffer_setup*)buffer_block);
     buffer_array->sizes[buffer_array->index] = buffer_block->current_memory_buffer_size;
 
-    /* buffer_setup struct will be used everytime we buffer a new block of memory(or a new ptr) */
-    free_buffer_block(buffer_block);
-
     buffer_array->index++;
 
     return buffer_array;

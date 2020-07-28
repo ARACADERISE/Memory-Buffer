@@ -18,6 +18,14 @@
 #include "buffer_engine.h"
 
 int main(int argc, char *args[]) {
+
+    // Each memory blocks buffer informations
+    buffer_info* buffer_info = setup_buffer_info();
+
+    // Setting up buffer ideals for buffering memory
     buffer_setup* buffer_block = setup_buffer_block();
     buffer_ptr_array* buffer_array = setup_buffer_ptr_array(buffer_block);
+
+    // Updating the buffer_info struct
+    update_buffer_info(buffer_info, buffer_array, buffer_block);
 }
