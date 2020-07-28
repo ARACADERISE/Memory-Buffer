@@ -21,6 +21,7 @@ buffer_info* setup_buffer_info() {
 
 buffer_info* update_buffer_info(buffer_info* buffer_, buffer_ptr_array* buffer_array, buffer_setup* buffer_block) {
 
+    buffer_->current_buffer_block = buffer_block;
     buffer_->current_buffer_array = buffer_array;
     buffer_->array_size = buffer_block->current_ammount_of_elements;
     buffer_->block_allocation_size = buffer_block->current_memory_buffer_size;
