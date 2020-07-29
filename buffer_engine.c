@@ -2,6 +2,7 @@
     Key Concepts for buffering memory blocks
 */
 #include "buffer_engine.h"
+#include "buffer_.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -32,6 +33,9 @@ buffer_info* update_buffer_info(buffer_info* buffer_, buffer_ptr_array* buffer_a
     return buffer_;
 }
 
-buffer_info* buffer_calloc(buffer_info* buffer_info,buffer_setup* buffer_block, buffer_ptr_array* buffer_array) {
+buffer_info* buffer_calloc(void* ptr, int ammount_of_elements, size_t allocation_size, buffer_info* buffer_info, buffer_ptr_array* buffer_array) {
+
+    CALLOC_buffer_new_block(ptr, buffer_array, ammount_of_elements, allocation_size);
+
     return buffer_info;
 }

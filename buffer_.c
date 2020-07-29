@@ -14,7 +14,7 @@ buffer_setup* setup_buffer_block() {
     buffer_setup* buffer_block = calloc(1,sizeof(struct BUFFER_SETUP_STRUCT));
 
     buffer_block->current_memory_buffer_size = (
-        sizeof(buffer_block)*3
+        sizeof(*buffer_block)*3
     );
     
     buffer_block->current_ammount_of_elements = 1;
@@ -37,7 +37,7 @@ buffer_ptr_array* setup_buffer_ptr_array(buffer_setup* buffer_block) {
     );
     buffer_array->ammount_of_elements = buffer_block->current_ammount_of_elements;
     buffer_array->BUFFER_ARRAY_SIZE = (
-        sizeof(buffer_array)*4
+        sizeof(*buffer_array)*4
     );
 
     /* The buffer_block struct is the first ptr */
@@ -49,6 +49,11 @@ buffer_ptr_array* setup_buffer_ptr_array(buffer_setup* buffer_block) {
     return buffer_array;
 }
 
+/* 
+    Adds the recent buffer_block to the buffer_array. 
+    This basically just updates the array everytime a new buffer_block
+    is created
+*/
 buffer_ptr_array* add_buffer_block(buffer_setup* buffer_block, buffer_ptr_array* buffer_array) {
 
     buffer_array->ammount_of_elements = buffer_block->current_ammount_of_elements;
@@ -65,9 +70,14 @@ buffer_ptr_array* add_buffer_block(buffer_setup* buffer_block, buffer_ptr_array*
     buffer_array->sizes[buffer_array->index] = buffer_block->current_memory_buffer_size;
 
     free_buffer_block(buffer_block);
+    setup_strict_allocations(buffer_array);
+
+    buffer_array->index++;
 
     return buffer_array;
 }
+
+// Making a buffer_block off of the calloc function
 buffer_ptr_array* CALLOC_buffer_new_block(void* ptr, buffer_ptr_array* buffer_array, int ammount_of_elements,size_t allocation_size) {
     buffer_setup* buffer_block = calloc(1,sizeof(struct BUFFER_SETUP_STRUCT));
 
@@ -84,6 +94,10 @@ buffer_ptr_array* CALLOC_buffer_new_block(void* ptr, buffer_ptr_array* buffer_ar
 }
 
 buffer_ptr_array* setup_strict_allocations(buffer_ptr_array* buffer_array) {
+    
+    if(!(buffer_array->ptrs[buffer_array->index]==(void*)0)) buffer_array->ptrs[buffer_array->index] = malloc(buffer_array->sizes[buffer_array->index]);
+    else printf("NONE");
+    // No else, we just keep it at a void
 
     return buffer_array;
 }
