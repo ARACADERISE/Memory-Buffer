@@ -35,7 +35,14 @@ buffer_info* update_buffer_info(buffer_info* buffer_, buffer_ptr_array* buffer_a
 
 buffer_info* buffer_calloc(void* ptr, int ammount_of_elements, size_t allocation_size, buffer_info* buffer_info, buffer_ptr_array* buffer_array) {
 
+    // Allocating memory
     CALLOC_buffer_new_block(ptr, buffer_array, ammount_of_elements, allocation_size);
+
+    // We don't want to free the pointer, so we make a new buffer_block
+    buffer_setup* buffer_block = buffer_array->ptrs[buffer_array->index-1];
+
+    // Updating the buffer information
+    update_buffer_info(buffer_info, buffer_array, buffer_block);
 
     return buffer_info;
 }
