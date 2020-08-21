@@ -1,3 +1,4 @@
+
 #ifndef BUFFER_ENGINE
 #define BUFFER_ENGINE
 #include "buffer_.h"
@@ -24,5 +25,10 @@ void* remote_buffer_calloc(void* ptr,size_t amount_of_elements, size_t size);
 #define BUFFER_SET(amount) ( (amount ^ 1) & amount )
 #define DELETE(amount, outof) ( (outof >> amount) ^ (outof-amount) )
 #define BUFFER_DELETE(del_amount, out_of) ( (BUFFER_ASSERT(DELETE(del_amount,out_of), (out_of-del_amount)) == 0) ? DELETE(del_amount, out_of) : (out_of-del_amount))
+
+/* BUFFER FLUSH, USED TO FLUSH THE MEMORY BUFFER WHENEVER NEEDED */
+#define FLUSH_BUFFER(current_memory) ( (current_memory >> sizeof(current_memory) < current_memory) ? current_memory | sizeof(current_memory) >> sizeof(current_memory): -1 )
+// MAX_MEMORY_FLUSH: assigns current ammount of memory to zero
+#define MAX_MEMORY_FLUSH(size_to_flush) ( (size_to_flush  > 0) ? (size_to_flush & sizeof(size_to_flush)) : size_to_flush/* -1 was encountered, we will just return the original size */ )
 
 #endif
