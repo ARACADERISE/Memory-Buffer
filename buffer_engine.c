@@ -90,9 +90,9 @@ void* remote_buffer_calloc(void* ptr,size_t amount_of_elements, size_t size) {
     if(BUFFER_ASSERT(buffer_info->REMOTE_ALLOCATION->remote_ammount, amount_of_elements*size)==0) {
         printf("%ld",buffer_info->REMOTE_ALLOCATION->remote_ammount);
     } else {
-        buffer_info->REMOTE_ALLOCATION->remote_ammount = BUFFER_RECORRECT(buffer_info->REMOTE_ALLOCATION->remote_ammount,amount_of_elements*size);
+        buffer_info->REMOTE_ALLOCATION->remote_ammount = BUFFER_ASSERT_AND_RECORRECT(buffer_info->REMOTE_ALLOCATION->remote_ammount,amount_of_elements*size);
 
-        printf("%d",BUFFER_EXPAND(20, 120));
+        printf("%ld",buffer_info->REMOTE_ALLOCATION->remote_ammount);
     }
 
     return ptr;

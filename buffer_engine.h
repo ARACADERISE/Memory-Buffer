@@ -20,6 +20,6 @@ void* buffer_calloc(void* ptr, int amount_of_elements, size_t allocation_size, b
 void* remote_buffer_calloc(void* ptr,size_t amount_of_elements, size_t size);
 
 #define BUFFER_ASSERT(size, against) (((size & against) == size) ? 0 : 1)
-#define BUFFER_RECORRECT(from,to) ( (to - from) + from )
+#define BUFFER_ASSERT_AND_RECORRECT(from,to) ( (BUFFER_ASSERT(((to-from)+from), to)) ? to: (to-from)+from )
 
 #endif
