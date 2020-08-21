@@ -1,9 +1,4 @@
-#ifndef BUFFER_ /* 
-    BUFFERS_VOID is just a nickname for the applications beginning steps.
-    With buffer_.h, BUFFERS_VOID is a symbol that there is no memory buffering going on yet,
-    and that memory allocations for future buffering is happening with the structs/sturct arrays,
-    so take no actions with memory buffering yet until BUFFERS_VOID is undefined and BUFFER is defined
-*/
+#ifndef BUFFER_
 #define BUFFER_
 
 #include <stddef.h>

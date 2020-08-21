@@ -85,15 +85,15 @@ void* remote_buffer_calloc(void* ptr,size_t amount_of_elements, size_t size) {
 
     buffer_info->REMOTE_ALLOCATION->remote_buffer_block = buffer_block;
     buffer_info->REMOTE_ALLOCATION->remote_size = size;
-    buffer_info->REMOTE_ALLOCATION->remote_ammount = buffer_info->REMOTE_ALLOCATION->remote_buffer_block->current_memory_buffer_size*amount_of_elements-1;
+    buffer_info->REMOTE_ALLOCATION->remote_ammount = buffer_info->REMOTE_ALLOCATION->remote_buffer_block->current_memory_buffer_size*amount_of_elements;
 
     if(BUFFER_ASSERT(buffer_info->REMOTE_ALLOCATION->remote_ammount, amount_of_elements*size)==0) {
-        printf("%ld",buffer_info->REMOTE_ALLOCATION->remote_ammount);
+        buffer_info->REMOTE_ALLOCATION->remote_ammount = BUFFER_SET(buffer_info->REMOTE_ALLOCATION->remote_ammount);
+        return ptr;
     } else {
         buffer_info->REMOTE_ALLOCATION->remote_ammount = BUFFER_ASSERT_AND_RECORRECT(buffer_info->REMOTE_ALLOCATION->remote_ammount,amount_of_elements*size);
-
-        printf("%ld",buffer_info->REMOTE_ALLOCATION->remote_ammount);
+        return ptr;
     }
 
-    return ptr;
+    return (void*)0;
 }

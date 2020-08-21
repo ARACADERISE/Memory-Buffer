@@ -21,5 +21,8 @@ void* remote_buffer_calloc(void* ptr,size_t amount_of_elements, size_t size);
 
 #define BUFFER_ASSERT(size, against) (((size & against) == size) ? 0 : 1)
 #define BUFFER_ASSERT_AND_RECORRECT(from,to) ( (BUFFER_ASSERT(((to-from)+from), to)) ? to: (to-from)+from )
+#define BUFFER_SET(amount) ( (amount ^ 1) & amount )
+#define DELETE(amount, outof) ( (outof >> amount) ^ (outof-amount) )
+#define BUFFER_DELETE(del_amount, out_of) ( (BUFFER_ASSERT(DELETE(del_amount,out_of), (out_of-del_amount)) == 0) ? DELETE(del_amount, out_of) : (out_of-del_amount))
 
 #endif
