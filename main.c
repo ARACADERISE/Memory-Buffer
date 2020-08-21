@@ -28,4 +28,7 @@ int main(int argc, char *args[]) {
 
     // Updating the buffer_info struct
     update_buffer_info(buffer_info, buffer_array, buffer_block);
+
+    int* a = remote_buffer_calloc(a, 12, sizeof(int));
+    printf("%ld",buffer_array->sizes[CURRENT_INDEX]);
 }

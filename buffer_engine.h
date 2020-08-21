@@ -7,10 +7,16 @@ typedef struct BUFFER_INFO {
     buffer_ptr_array* current_buffer_array;
     size_t array_size; // ammount of elements
     size_t block_allocation_size; // size of current block
+    struct REMOTE_ALLOCATE {
+        buffer_setup* remote_buffer_block;
+        size_t remote_size;
+        size_t remote_ammount;
+    } *REMOTE_ALLOCATION;
 } buffer_info;
 
 buffer_info* setup_buffer_info();
 buffer_info* update_buffer_info(buffer_info* buffer_, buffer_ptr_array* buffer_array, buffer_setup* buffer_block);
-buffer_info* buffer_calloc(void* ptr, int ammount_of_elements, size_t allocation_size, buffer_info* buffer_info, buffer_ptr_array* buffer_array);
+void* buffer_calloc(void* ptr, int amount_of_elements, size_t allocation_size, buffer_info* buffer_info, buffer_ptr_array* buffer_array);
+void* remote_buffer_calloc(void* ptr,size_t amount_of_elements, size_t size);
 
 #endif
