@@ -21,13 +21,5 @@ void* remote_buffer_calloc(void* ptr,size_t amount_of_elements, size_t size);
 
 #define BUFFER_ASSERT(size, against) (((size & against) == size) ? 0 : 1)
 #define BUFFER_RECORRECT(from,to) ( (to - from) + from )
-/* This may not always expand a block */
-#define BUFFER_TRY_EXPAND(from,to) ( (to - from) | from )
-/* This will for sure expand a block */
-static inline void* BUFFER_EXPAND(size_t from, size_t to) {
-    
-}
-/* This will expand a block depending on it's size */
-#define BUFFER_EXPAND_APPEND(appended_size, from, to) ( (to-appended_size) & (from << to) )
 
 #endif
