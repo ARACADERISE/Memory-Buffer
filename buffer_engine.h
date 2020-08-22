@@ -30,5 +30,6 @@ void* remote_buffer_calloc(void* ptr,size_t amount_of_elements, size_t size);
 #define FLUSH_BUFFER(current_memory) ( (current_memory >> sizeof(current_memory) < current_memory) ? current_memory | sizeof(current_memory) >> sizeof(current_memory): -1 )
 // MAX_MEMORY_FLUSH: assigns current ammount of memory to zero
 #define MAX_MEMORY_FLUSH(size_to_flush) ( (size_to_flush  > 0) ? (size_to_flush & sizeof(size_to_flush)) : size_to_flush/* -1 was encountered, we will just return the original size */ )
+#define MAX_MEMORY_FLUSH_NULLIFY(size) ( (MAX_MEMORY_FLUSH(FLUSH_BUFFER(size)) == size) ? (void*)0 : /* ALLOCATE STRICT MEMORY */malloc(size) )
 
 #endif
