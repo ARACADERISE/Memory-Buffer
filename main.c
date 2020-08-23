@@ -21,7 +21,7 @@ int main(int argc, char *args[]) {
 
     // Each memory blocks buffer informations
     buffer_info* buffer_info = setup_buffer_info();
-    buffer_info->REMOTE_ALLOCATION = calloc(1,sizeof(buffer_info));
+    buffer_info->REMOTE_ALLOCATION = calloc(1,sizeof(*buffer_info->REMOTE_ALLOCATION)*20);
 
     // Setting up buffer ideals for buffering memory
     buffer_setup* buffer_block = setup_buffer_block();

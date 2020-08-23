@@ -7,12 +7,14 @@ typedef struct BUFFER_SETUP_STRUCT {
     size_t current_memory_buffer_size; // sizes of each, including the buffer_setup struct
     size_t current_amount_of_elements; // elements to be buffered
     void* struct_ptr;
+    size_t buffer_flush;
 } buffer_setup;
 
 typedef struct BUFFER_ARRAY {
     int index;
     void** ptrs;
     size_t* sizes;
+    size_t* flushes;
     size_t amount_of_elements;
     size_t BUFFER_ARRAY_SIZE; // keeping all sizes..including the recent struct in use
 } buffer_ptr_array;

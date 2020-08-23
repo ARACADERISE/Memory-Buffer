@@ -9,7 +9,7 @@
 buffer_info* setup_buffer_info() {
     buffer_info* buffer_info = calloc(
         1,
-        sizeof(struct BUFFER_INFO)
+        sizeof(*buffer_info)
     );
 
     buffer_info->current_buffer_block = (void*)0;
@@ -43,7 +43,7 @@ buffer_info* update_buffer_info(buffer_info* buffer_, buffer_ptr_array* buffer_a
     return buffer_block;
 }*/
 static buffer_setup* setup_buffer_block_(size_t am_of_elem, size_t size, void* ptr) {
-    buffer_setup* buffer_block = calloc(1,sizeof(buffer_block));
+    buffer_setup* buffer_block = calloc(1,sizeof(*buffer_block));
 
     buffer_block->current_amount_of_elements = am_of_elem;
     buffer_block->current_memory_buffer_size = size;
@@ -66,18 +66,13 @@ void* buffer_calloc(void* ptr, int amount_of_elements, size_t allocation_size, b
     return buffer_info;
 }
 
-void say_hi() {
-    printf("HEY");
-}
-
-/**/
 void* remote_buffer_calloc(void* ptr,size_t amount_of_elements, size_t size) {
-    buffer_info* buffer_info = calloc(1,sizeof(buffer_info));
+    buffer_info* buffer_info = calloc(1,sizeof(*buffer_info));
     setup_buffer_block_(amount_of_elements, size, ptr);
     
-    buffer_setup* buffer_block = calloc(1,sizeof(buffer_setup));
+    buffer_setup* buffer_block = calloc(1,sizeof(*buffer_block));
     setup_buffer_block_(amount_of_elements, size, ptr);
-    buffer_ptr_array* buffer_array = calloc(1,sizeof(buffer_ptr_array*));
+    buffer_ptr_array* buffer_array = calloc(1,sizeof(*buffer_array));
 
     buffer_block->current_amount_of_elements = amount_of_elements;
     buffer_block->struct_ptr = ptr;
@@ -85,7 +80,7 @@ void* remote_buffer_calloc(void* ptr,size_t amount_of_elements, size_t size) {
 
     CALLOC_buffer_new_block(ptr, buffer_array, amount_of_elements, size);
 
-    buffer_info->REMOTE_ALLOCATION = calloc(1,sizeof(buffer_info->REMOTE_ALLOCATION));
+    buffer_info->REMOTE_ALLOCATION = calloc(1,sizeof(*buffer_info->REMOTE_ALLOCATION));
 
     buffer_info->REMOTE_ALLOCATION->remote_buffer_block = buffer_block;
     buffer_info->REMOTE_ALLOCATION->remote_size = size;
